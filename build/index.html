@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Booz Farms</title>
+    <link href='/stylesheets/bootstrap.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
+
+
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="boozFarms">
+    <div class="text-center" style="margin-top:25px; ">
+        <h2>Booz Farms</h2>
+    </div>
+    <div class="container">
+        <ui-view></ui-view>
+    </div>
+
+    <script type="text/ng-template" id="/home.html">
+
+        <div class="container">
+            <div class="row" style="margin-top: 10px; margin-bottom:25px;">
+                <div class="col-md-6">
+
+                    <select class="form-select" id="selectFarms" style="width: 400px;" ng-model="farmerId" ng-options="farm.farmer_id as (farm.farm_name | uppercase) for farm in farms | unique:'farm_name' | orderBy:'farm_name'">
+                        <option value="">-- Select Farms --</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" id="selectItem" style="width: 400px;" ng-model="item" ng-options="farm.item as (farm.item | uppercase) for farm in farms | unique:'item' | orderBy:'item'">
+                        <option value="">-- Select Item --</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Farm</th>
+                    <th>Item</th>
+                    <th>Address</th>
+                </tr>
+
+                <tr style="margin-top:15px;" ng-repeat="f in farms | farmerFilter:farmerId | itemFilter:item | orderBy: ['farm_name', 'item']">
+                    <td>{{f.farm_name | uppercase}}</td>
+                    <td>{{f.item | uppercase}}</td>
+                    <td ng-bind-html="convertAddress(f.location_1.human_address)"></td>
+                </tr>
+            </table>
+        </div>
+    </script>
+</body>
+
+</html>

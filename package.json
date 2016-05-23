@@ -1,0 +1,17 @@
+{
+  "name": "BoozFarms",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "vinyl-source-stream": "^1.1.0",
+    "merge-stream": "^1.0.0",
+    "browser-sync": "^2.11.1"
+  },
+  "dependencies": {
+  }
+}
